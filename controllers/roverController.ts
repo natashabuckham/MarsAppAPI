@@ -1,5 +1,5 @@
 import nasaClient from "../clients/nasaClient"
-import Rover from "../models/roverData"
+import {Rover} from "../models/roverData"
 
 export const RoverController = {
     Index: async (req: any, res: any) => {
