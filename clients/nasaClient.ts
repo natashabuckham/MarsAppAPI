@@ -15,4 +15,13 @@ export default class nasaClient {
                 console.error(error)
             })
     }
+
+    static getRoverPhotos() {
+        const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&camera=navcam&api_key=${apiKey}`
+        return axios.get(apiUrl)
+        .then((response: any) => response.data.photos)
+        .catch((error: any) => {
+            console.error(error)
+        })
+    }
 }
