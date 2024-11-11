@@ -6,6 +6,8 @@ const port = 5000;
 app.use(express.json());
 const router = express.Router();
 router.get('/test', (req, res: any) => res.send('Hello world!'));
+router.get('/rovers', (req, res: any) => res.send('list of rovers'))
+
 app.use('/', router);
 
 app.listen(port, () => {
