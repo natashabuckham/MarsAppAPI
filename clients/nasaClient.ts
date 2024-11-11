@@ -1,19 +1,15 @@
 import dotenv from "dotenv"
 import axios from "axios"
 
-dotenv.config({path: '../.env'})
-export default class nasaClient {
-    apiKey: string | undefined
-    static getRoverList: any
-    
-    constructor() {
-        this.apiKey = process.env.NASA_API_KEY
-    }
+dotenv.config({path: './.env'})
 
-    getRoverList() {
-        const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=${this.apiKey}`
+const apiKey: string | undefined = process.env.NASA_API_KEY
+export default class nasaClient {
+
+    static getRoverList() {
+        const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=${apiKey}`
         return axios.get(apiUrl)
-            .then((response: any) => response.json())
+            .then((response: any) => response.data.rovers)
             .catch((error: any) => {
                 console.error(error)
             })
