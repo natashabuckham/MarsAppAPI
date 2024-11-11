@@ -1,11 +1,12 @@
 import nasaClient from "../clients/nasaClient"
+import Rover from "../models/roverData"
 
 export const RoverController = {
-    Index: async (req: any, res: { send: (arg0: string[]) => void }) => {
+    Index: async (req: any, res: any) => {
         try {
-            const roverData = await nasaClient.getRoverList()
+            const roverData: Rover[] | void = await nasaClient.getRoverList()
             const roverNames: string[] = []
-            roverData.forEach((rover: { name: string }) => roverNames.push(rover.name))
+            roverData!.forEach((rover: Rover) => roverNames.push(rover.name))
 
             res.send(roverNames)
         } catch(error) {

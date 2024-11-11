@@ -1,5 +1,6 @@
 import dotenv from "dotenv"
 import axios from "axios"
+import Rover from "../models/roverData"
 
 dotenv.config({path: './.env'})
 
@@ -9,7 +10,7 @@ export default class nasaClient {
     static getRoverList() {
         const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=${apiKey}`
         return axios.get(apiUrl)
-            .then((response: any) => response.data.rovers)
+            .then((response: any): Rover[] => response.data.rovers)
             .catch((error: any) => {
                 console.error(error)
             })
