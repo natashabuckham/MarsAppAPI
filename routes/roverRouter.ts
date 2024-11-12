@@ -3,6 +3,6 @@ import { RoverController } from "../controllers/roverController"
 
 const roverRouter = express.Router()
 
-roverRouter.get("/", RoverController.Index)
+roverRouter.get("/all", RoverController.Index)
 
 export default roverRouter

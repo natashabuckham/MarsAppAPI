@@ -3,6 +3,6 @@ import { PhotoController } from "../controllers/photoController"
 
 const photoRouter = express.Router()
 
-photoRouter.get("/", PhotoController.Index)
+photoRouter.get("/:rover", PhotoController.Index)
 
 export default photoRouter

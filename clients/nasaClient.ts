@@ -17,6 +17,17 @@ enum Cameras {
     PANCAM = "PANCAM",
     MINITES = "MINITES"
 }
+
+interface PathParams {
+    rover: string;
+}
+
+interface QueryParams {
+    sol: number;
+    camera: string;
+}
+
+
 export default class nasaClient {
 
     static getRoverList() {
@@ -28,9 +39,16 @@ export default class nasaClient {
             })
     }
 
-    static getRoverPhotos() {
-        const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&camera=${Cameras.NAVCAM}&api_key=${apiKey}`
-        return axios.get(apiUrl)
+    static getRoverPhotos(reqParams: PathParams, reqQuery: QueryParams) {
+        const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers/${reqParams.rover}/photos`
+        
+        return axios.get(apiUrl, {
+            params: {
+                sol: reqQuery.sol | 1500,
+                camera: reqQuery.camera,
+                api_key: apiKey
+            }
+        })
         .then((response: any): Photo[] => response.data.photos)
         .catch((error: any) => {
             console.error(error)
