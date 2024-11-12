@@ -14,5 +14,3 @@ export const PhotoController = {
         }
     }
 }
-
-// get user-selected params from req object - pass to nasaClient method
