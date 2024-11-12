@@ -31,8 +31,12 @@ interface QueryParams {
 export default class nasaClient {
 
     static getRoverList() {
-        const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=${apiKey}`
-        return axios.get(apiUrl)
+        const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers`
+        return axios.get(apiUrl, {
+            params: {
+                api_key: apiKey
+            }
+        })
             .then((response: any): Rover[] => response.data.rovers)
             .catch((error: any) => {
                 console.error(error)
