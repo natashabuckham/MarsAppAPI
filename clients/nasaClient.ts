@@ -1,5 +1,5 @@
 import dotenv from "dotenv"
-import axios, { AxiosPromise } from "axios"
+import axios from "axios"
 import Rover from "../models/roverData"
 
 dotenv.config({path: './.env'})
