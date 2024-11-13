@@ -11,7 +11,7 @@ export default class nasaClient {
         const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=${apiKey}`
         return axios.get(apiUrl)
             .then((response: any): Rover[] => response.data.rovers)
-            .catch((error: any) => {
+            .catch((error: any): void => {
                 console.error(error)
             })
     }
