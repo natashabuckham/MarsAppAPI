@@ -27,7 +27,7 @@ interface QueryParams {
     camera: string;
 }
 
-export const getRoverList = () => {
+export const getRoverList = (): Promise<void | Rover[]> => {
     const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers`
     return axios.get(apiUrl, {
         params: {
@@ -35,7 +35,7 @@ export const getRoverList = () => {
         }
     })
         .then((response: any): Rover[] => response.data.rovers)
-        .catch((error: any) => {
+        .catch((error: any): void => {
             console.error(error)
         })
 }
