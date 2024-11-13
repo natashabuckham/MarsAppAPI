@@ -1,8 +1,9 @@
+import { Request, Response } from "express"
 import nasaClient from "../clients/nasaClient"
 import Rover from "../models/roverData"
 
 export const RoverController = {
-    Index: async (req: any, res: any) => {
+    Index: async (req: Request, res: Response) => {
         try {
             const roverData: Rover[] | void = await nasaClient.getRoverList()
             const roverNames: string[] = []
