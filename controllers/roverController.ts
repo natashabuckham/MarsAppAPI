@@ -1,11 +1,11 @@
 import { Request, Response } from "express"
-import nasaClient from "../clients/nasaClient"
-import Rover from "../models/roverData"
+import { getRoverList } from "../clients/nasaClient"
+import {Rover} from "../models/roverData"
 
 export const RoverController = {
     Index: async (req: Request, res: Response): Promise<any> => {
         try {
-            const roverData: Rover[] | string = await nasaClient.getRoverList()
+            const roverData: Rover[] | string = await getRoverList()
 
             if (typeof roverData === 'string') {
                 return res.send(roverData)

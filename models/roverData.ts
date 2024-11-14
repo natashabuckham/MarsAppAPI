@@ -1,4 +1,4 @@
-interface Rover {
+export interface Rover {
     id: number;
     name: string;
     landing_date: string;
@@ -7,12 +7,21 @@ interface Rover {
     max_sol: number;
     max_date: string;
     total_photos: number;
-    cameras: Camera[]
+    cameras: Camera[];
 }
 
-interface Camera {
+export interface Camera {
+    id?: number;
     name: string;
+    rover_id?: number;
     full_name: string;
 }
 
-export default Rover
+export interface Photo {
+    id: number;
+    sol: number;
+    camera: Camera;
+    img_src: string;
+    earth_date: string;
+    rover: Rover;
+}
