@@ -8,7 +8,7 @@ export const RoverController = {
             const roverData: Rover[] | string = await nasaClient.getRoverList()
 
             if (typeof roverData === 'string') {
-                return roverData
+                return res.send(roverData)
             }
 
             const roverNames = roverData.map((rover: Rover) => rover.name)
