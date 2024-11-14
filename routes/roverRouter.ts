@@ -1,4 +1,4 @@
-import express from "express"
+import express, { Router, Request, Response } from "express"
 import { RoverController } from "../controllers/roverController"
 
 const roverRouter = express.Router()
