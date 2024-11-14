@@ -16,7 +16,7 @@ export const RoverController = {
             res.send(roverNames)
         } catch(error) {
             console.error(error)
-            return `Error: ${error}`
+            res.status(500).json({ error: 'Failed to fetch rover data' })
         }
     }
 }
