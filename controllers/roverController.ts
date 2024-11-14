@@ -5,7 +5,7 @@ import Rover from "../models/roverData"
 export const RoverController = {
     Index: async (req: Request, res: Response) => {
         try {
-            const roverData: Rover[] | void = await nasaClient.getRoverList()
+            const roverData: Rover[] | undefined = await nasaClient.getRoverList()
             const roverNames: string[] = []
             roverData!.forEach((rover: Rover) => roverNames.push(rover.name))
 
