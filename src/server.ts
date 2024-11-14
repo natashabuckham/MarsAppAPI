@@ -1,13 +1,13 @@
 import express from "express";
+import roverRouter from "../routes/roverRouter";
 
 const app = express();
 const port = 5000;
 
-app.use(express.json());
-const router = express.Router();
-router.get('/test', (req, res: any) => res.send('Hello world!'));
-app.use('/', router);
+app.use('/rovers', roverRouter)
 
 app.listen(port, () => {
   console.log(`Test backend is running on port ${port}`);
 });
+
+export default app
