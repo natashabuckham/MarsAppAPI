@@ -1,5 +1,5 @@
 import dotenv from "dotenv"
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 import {Rover, Photo} from "../models/roverData"
 
 dotenv.config({path: './.env'})
@@ -34,24 +34,24 @@ export const getRoverList = (): Promise<void | Rover[]> => {
             api_key: apiKey
         }
     })
-        .then((response: any): Rover[] => response.data.rovers)
-        .catch((error: any): void => {
+        .then((response: AxiosResponse): Rover[] => response.data.rovers)
+        .catch((error: Error): void => {
             console.error(error)
         })
 }
 
-export const getRoverPhotos = (reqParams: PathParams, reqQuery: QueryParams) => {
-    const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers/${reqParams.rover}/photos`
+export const getRoverPhotos = (rover: string, sol: string, camera: string): Promise<void | Photo[]> => {
+    const apiUrl: string = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos`
     
     return axios.get(apiUrl, {
         params: {
-            sol: reqQuery.sol | 1500,
-            camera: reqQuery.camera,
+            sol: sol || "1500",
+            camera: camera,
             api_key: apiKey
         }
     })
-    .then((response: any): Photo[] => response.data.photos)
-    .catch((error: any) => {
+    .then((response: AxiosResponse): Photo[] => response.data.photos)
+    .catch((error: Error): void => {
         console.error(error)
     })
 }

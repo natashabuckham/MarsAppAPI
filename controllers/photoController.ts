@@ -1,10 +1,13 @@
+import { Request, Response } from "express"
 import { getRoverPhotos } from "../clients/nasaClient"
 import {Photo} from "../models/roverData"
 
 export const PhotoController = {
-    Index: async (req: any, res: any) => {
+    Index: async (req: Request, res: Response) => {
         try {
-            const photoData: Photo[] | void = await getRoverPhotos(req.params, req.query)
+            const { rover } = req.params
+            const { sol, camera } = req.query
+            const photoData: Photo[] | void = await getRoverPhotos(rover, sol, camera)
             const roverPhotoUrls: string[] = []
             photoData!.forEach((photo: Photo) => roverPhotoUrls.push(photo.img_src))
 
